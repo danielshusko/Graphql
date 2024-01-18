@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option csharp_namespace = "Location.Grpc.proto";
+option go_package = "Location/Grpc/proto";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+package location;
+
+service Locations {
+
+  rpc GetById (IdRequestMessage) returns (LocationMessage) {
+	option (google.api.http) = {
+      get: "/api/locations/{id}"
+    };
+  }
+
+  rpc GetLocations (google.protobuf.Empty) returns (LocationsMessage) {
+	option (google.api.http) = {
+      get: "/api/locations"
+    };
+  }
+ }
+
+ message IdRequestMessage{
+     int32 id = 1;
+ }
+
+ message LocationsMessage{
+     repeated LocationMessage locations = 1;
+ }
+
+ message LocationMessage{
+     int32 id = 1;
+     string code = 2;
+     string name = 3;
+     AddressMessage address = 4;
+ }
+
+ message AddressMessage{
+     string street = 1;
+     string city = 2;
+     string state = 3;
+     string zip = 4;
+ }

@@ -1,5 +1,6 @@
 ﻿using GraphQl.Domain;
 using GraphQL.Types;
+
 // ReSharper disable VirtualMemberCallInConstructor
 
 namespace GraphQl.GraphQl.Models;

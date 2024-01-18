@@ -1,5 +1,6 @@
-﻿using GraphQl.GraphQl.Models;
-using GraphQL;
+﻿using GraphQL;
+using GraphQl.GraphQl.Models;
+using GraphQL.Server.Ui.Playground;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,23 +16,26 @@ public static class DependencyInjection
 
         services.AddScoped<LocationQuery>();
         services.AddScoped<ISchema, LocationRequestSchema>();
-        
+
         services.AddGraphQL(b => b
-            .AddAutoSchema<LocationQuery>() // schema
-            .AddSystemTextJson() // serializer
+            .AddAutoSchema<LocationQuery>()
+            .AddSystemTextJson()
             .AddErrorInfoProvider(opt => opt.ExposeExceptionDetails = true)
-        ); 
+        );
         return services;
     }
+
     public static WebApplication AddGraphQlProject(this WebApplication app)
     {
-        app.UseGraphQL<ISchema>("/graphql");            // url to host GraphQL endpoint
+        app.UseGraphQL<ISchema>();
+
+        //This adds an endpoint that lets us test the graphql. this should not be used in prod
         app.UseGraphQLPlayground(
-            "/playground",                               // url to host Playground at
-            new GraphQL.Server.Ui.Playground.PlaygroundOptions
+            "/playground",
+            new PlaygroundOptions
             {
-                GraphQLEndPoint = "/graphql",         // url of GraphQL endpoint
-                SubscriptionsEndPoint = "/graphql",   // url of GraphQL endpoint
+                GraphQLEndPoint = "/graphql",
+                SubscriptionsEndPoint = "/graphql"
             });
 
         return app;

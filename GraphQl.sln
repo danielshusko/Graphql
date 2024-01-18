@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.Api", "GraphQl.Api\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.Grpc", "GraphQl.Grpc\GraphQl.Grpc.csproj", "{0EA970F5-13E9-4E3B-A5B7-2DE999386390}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.GraphQl", "GraphQl.GraphQl\GraphQl.GraphQl.csproj", "{AB0F991F-DCDE-4784-8040-BF5EFEE5A965}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0EA970F5-13E9-4E3B-A5B7-2DE999386390}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EA970F5-13E9-4E3B-A5B7-2DE999386390}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EA970F5-13E9-4E3B-A5B7-2DE999386390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB0F991F-DCDE-4784-8040-BF5EFEE5A965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB0F991F-DCDE-4784-8040-BF5EFEE5A965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB0F991F-DCDE-4784-8040-BF5EFEE5A965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB0F991F-DCDE-4784-8040-BF5EFEE5A965}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

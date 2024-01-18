@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GraphQl.Domain\GraphQl.Domain.csproj" />
+    <ProjectReference Include="..\GraphQl.GraphQl\GraphQl.GraphQl.csproj" />
     <ProjectReference Include="..\GraphQl.Grpc\GraphQl.Grpc.csproj" />
   </ItemGroup>
 

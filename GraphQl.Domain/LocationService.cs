@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿namespace GraphQl.Domain;
 
-namespace GraphQl.Domain
+public class LocationService
 {
-    public class LocationService
+    public List<Location> GetLocations()
     {
-        public List<Location> GetLocations() => Locations.LocationCollection;
-        public Location? GetById(int id) => Locations.LocationCollection.FirstOrDefault(x => x.Id == id);
+        return Locations.LocationCollection;
+    }
+
+    public Location? GetById(int id)
+    {
+        return Locations.LocationCollection.FirstOrDefault(x => x.Id == id);
     }
 }

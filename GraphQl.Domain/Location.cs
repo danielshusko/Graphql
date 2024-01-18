@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GraphQl.Domain;
+﻿namespace GraphQl.Domain;
 
 public class Location(int id, string code, string name, Address address)
 {

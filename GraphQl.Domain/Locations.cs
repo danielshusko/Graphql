@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace GraphQl.Domain;
+﻿namespace GraphQl.Domain;
 
 public static class Locations
 {

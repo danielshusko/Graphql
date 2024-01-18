@@ -3,11 +3,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQl.GraphQl;
 
-public class LocationDetailsSchema : Schema
+public class LocationRequestSchema : Schema
 {
-    public LocationDetailsSchema(IServiceProvider serviceProvider) : base(serviceProvider)
+    public LocationRequestSchema(IServiceProvider serviceProvider) : base(serviceProvider)
     {
-        Description = "LocationService";
+        Description = "The Location domain schema.";
         Query = serviceProvider.GetRequiredService<LocationQuery>();
     }
 }

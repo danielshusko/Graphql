@@ -1,6 +1,8 @@
 ﻿using GraphQL.Types;
 using GraphQL;
 using GraphQl.Domain;
+using GraphQl.GraphQl.Models;
+// ReSharper disable VirtualMemberCallInConstructor
 
 namespace GraphQl.GraphQl
 {
@@ -8,21 +10,17 @@ namespace GraphQl.GraphQl
     {
         public LocationQuery(LocationService locationService)
         {
-            Field<ListGraphType<LocationGraphQlDto>>(
-                Name = "Locations",
-                Description = "Gets all locations.",
-                resolve: x => locationService.GetLocations()
-            );
+            Name = "LocationQuery";
+            Description = "Methods to interact with the Location domain.";
 
-            Field<ListGraphType<LocationGraphQlDto>>(
-                Name = "Location",
-                Description = "Gets a location by its id",
-                arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
-                resolve: x =>
-                {
-                    var location = locationService.GetById(x.GetArgument<int>("id"));
-                    return new[]{location};
-                });
+            Field<ListGraphType<LocationGraphModel>>("GetLocations")
+                .Description("Gets all locations.")
+                .Resolve( x => locationService.GetLocations());
+
+            Field<LocationGraphModel>("GetLocationById")
+                .Description("Gets a location by its id")
+                .Argument<IntGraphType>("id")
+                .Resolve(x => locationService.GetById(x.GetArgument<int>("id")));
         }
     }
 }

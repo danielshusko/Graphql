@@ -1,4 +1,5 @@
-﻿using GraphQL;
+﻿using GraphQl.GraphQl.Models;
+using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,11 +10,11 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddGraphQlProject(this IServiceCollection services)
     {
-        services.AddScoped<LocationGraphQlDto>();
-        services.AddScoped<AddressGraphQlDto>();
+        services.AddScoped<LocationGraphModel>();
+        services.AddScoped<AddressGraphModel>();
 
         services.AddScoped<LocationQuery>();
-        services.AddScoped<ISchema, LocationDetailsSchema>();
+        services.AddScoped<ISchema, LocationRequestSchema>();
         
         services.AddGraphQL(b => b
             .AddAutoSchema<LocationQuery>() // schema

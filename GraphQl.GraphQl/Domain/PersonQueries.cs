@@ -1,7 +1,6 @@
 ﻿using GraphQl.Domain;
 using GraphQl.GraphQl.Domain.DataLoaders;
 using GraphQl.GraphQl.Domain.Models;
-using HotChocolate.Data.Filters;
 using HotChocolate.Types.Pagination;
 
 
@@ -60,15 +59,12 @@ public class PersonQueries(PersonBatchDataLoader dataLoader)
 
         return connection;
     }
-}
 
-public class PersonFilterType : FilterInputType<PersonGraphModel>
-{
-    protected override void Configure(
-        IFilterInputTypeDescriptor<PersonGraphModel> descriptor)
+    [UsePaging(IncludeTotalCount = true)]
+    [UseFiltering]
+    public async Task<IQueryable<PersonGraphModel>> GetPeopleQueryable([Service] PersonService personService)
     {
-        descriptor.BindFieldsExplicitly();
-        //descriptor.Field(f => f.Name).Name("custom_name");
+        var people = await personService.GetPeopleQueryable();
+        return people.Select(x => new PersonGraphModel(x));
     }
 }
-

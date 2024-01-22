@@ -38,6 +38,8 @@ public class PersonService
         return peopleQuery.ToList();
     }
 
+    public async Task<IQueryable<Person>> GetPeopleQueryable() => (await Data.Data.People).AsQueryable();
+
     public async Task<List<Person>> GetByIds(IReadOnlyCollection<int> ids)
     {
         Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.ffff")}: Getting people: {string.Join(",", ids)}");

@@ -17,7 +17,8 @@ public static class DependencyInjection
 
         services.AddGraphQLServer()
             .AddQueryType<PersonQueries>()
-            .AddErrorFilter<GraphQlErrorFilter>();
+            .AddErrorFilter<GraphQlErrorFilter>()
+            .AddFiltering();
 
         return services;
     }

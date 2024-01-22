@@ -6,11 +6,11 @@ using Locations = Location.Grpc.proto.Locations;
 
 namespace GraphQl.Grpc;
 
-public class LocationGrpcService(LocationService locationService) : Locations.LocationsBase
+public class LocationGrpcService(PersonService personService) : Locations.LocationsBase
 {
     public override Task<LocationMessage> GetById(IdRequestMessage request, ServerCallContext context)
     {
-        var location = locationService.GetById(request.Id);
+        var location = personService.GetById(request.Id);
         if (location == null) throw new RpcException(new Status(StatusCode.NotFound, "Not found"));
 
         var locationMessage = ToLocationMessage(location);
@@ -19,7 +19,7 @@ public class LocationGrpcService(LocationService locationService) : Locations.Lo
 
     public override Task<LocationsMessage> GetLocations(Empty request, ServerCallContext context)
     {
-        var locations = locationService.GetLocations();
+        var locations = personService.GetPeople();
         var locationMessages = locations.Select(ToLocationMessage).ToList();
         var locationsMessage = new LocationsMessage();
         locationsMessage.Locations.AddRange(locationMessages);

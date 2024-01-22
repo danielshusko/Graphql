@@ -5,11 +5,9 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQl.Domain", "GraphQl.Domain\GraphQl.Domain.csproj", "{61FD23FA-F31D-4EAE-B906-B32AA5053159}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.Api", "GraphQl.Api\GraphQl.Api.csproj", "{38FA5B4E-23AC-4E87-A43A-4A0B53409781}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQl.Api", "GraphQl.Api\GraphQl.Api.csproj", "{38FA5B4E-23AC-4E87-A43A-4A0B53409781}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.Grpc", "GraphQl.Grpc\GraphQl.Grpc.csproj", "{0EA970F5-13E9-4E3B-A5B7-2DE999386390}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.GraphQl", "GraphQl.GraphQl\GraphQl.GraphQl.csproj", "{AB0F991F-DCDE-4784-8040-BF5EFEE5A965}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQl.GraphQl", "GraphQl.GraphQl\GraphQl.GraphQl.csproj", "{AB0F991F-DCDE-4784-8040-BF5EFEE5A965}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{38FA5B4E-23AC-4E87-A43A-4A0B53409781}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38FA5B4E-23AC-4E87-A43A-4A0B53409781}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38FA5B4E-23AC-4E87-A43A-4A0B53409781}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0EA970F5-13E9-4E3B-A5B7-2DE999386390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0EA970F5-13E9-4E3B-A5B7-2DE999386390}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0EA970F5-13E9-4E3B-A5B7-2DE999386390}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0EA970F5-13E9-4E3B-A5B7-2DE999386390}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB0F991F-DCDE-4784-8040-BF5EFEE5A965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB0F991F-DCDE-4784-8040-BF5EFEE5A965}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB0F991F-DCDE-4784-8040-BF5EFEE5A965}.Release|Any CPU.ActiveCfg = Release|Any CPU

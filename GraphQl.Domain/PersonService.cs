@@ -4,16 +4,46 @@ namespace GraphQl.Domain;
 
 public class PersonService
 {
-    public async Task<List<Person>> GetPeople()
+    public async Task<List<Person>> GetPeople(int? skip = null, int? take = null, PersonSortField? sortBy = null)
     {
         Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.ffff")}: Getting all people");
-        return await Data.Data.People;
+        var peopleQuery = (await Data.Data.People).AsEnumerable();
+        
+        if (sortBy != null)
+        {
+            switch (sortBy)
+            {
+                case PersonSortField.FirstName:
+                    peopleQuery = peopleQuery.OrderBy(x => x.FirstName);
+                    break;
+                case PersonSortField.LastName:
+                    peopleQuery = peopleQuery.OrderBy(x => x.LastName);
+                    break;
+                default:
+                    peopleQuery = peopleQuery.OrderBy(x => x.Id);
+                    break;
+            }
+        }
+
+        if (skip.HasValue)
+        {
+            peopleQuery = peopleQuery.Skip(skip.Value);
+        }
+
+        if (take.HasValue)
+        {
+            peopleQuery = peopleQuery.Take(take.Value);
+        }
+
+        return peopleQuery.ToList();
     }
+
     public async Task<List<Person>> GetByIds(IReadOnlyCollection<int> ids)
     {
         Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.ffff")}: Getting people: {string.Join(",", ids)}");
         return (await Data.Data.People).Where(x => ids.Contains(x.Id)).ToList();
     }
+
     public async Task<List<Person>> GetByParentIds(IReadOnlyCollection<int> ids)
     {
         Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.ffff")}: Getting people by parent ids: {string.Join(",", ids)}");
@@ -25,6 +55,13 @@ public class PersonService
         Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.ffff")}: Getting person: {id}");
         return (await Data.Data.People).FirstOrDefault(x => x.Id == id);
     }
+
+    public enum PersonSortField
+    {
+        Id,
+        FirstName,
+        LastName
+    }
 }
 
 public class CarService
@@ -35,6 +72,7 @@ public class CarService
         return (await Data.Data.Cars).Where(x => ids.Contains(x.Id)).ToList();
     }
 }
+
 public class ManufacturerService
 {
     public async Task<List<Manufacturer>> GetByIds(IReadOnlyCollection<int> ids)

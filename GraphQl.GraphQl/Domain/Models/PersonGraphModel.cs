@@ -48,6 +48,4 @@ public class PersonGraphModel(Person person)
         var car = await dataLoader.LoadAsync(CarId.Value);
         return new CarGraphModel(car);
     }
-
-    public string GetCursor() => this.GetHashCode().ToString();
 }

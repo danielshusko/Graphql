@@ -1,5 +1,4 @@
-﻿using GraphQl.Domain.Data;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQl.Domain;
 

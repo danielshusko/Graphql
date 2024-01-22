@@ -30,13 +30,9 @@ public class PersonQueries(PersonBatchDataLoader dataLoader)
         if (!string.IsNullOrWhiteSpace(sortBy))
         {
             if (Enum.TryParse<PersonService.PersonSortField>(sortBy, true, out var parsedValue))
-            {
                 personSortField = parsedValue;
-            }
             else
-            {
                 throw new ArgumentException($"Cannot sort by {sortBy}");
-            }
         }
 
         int? skip = string.IsNullOrWhiteSpace(after)
@@ -52,9 +48,9 @@ public class PersonQueries(PersonBatchDataLoader dataLoader)
         var edges = peopleGraphModels.Select(x => new Edge<PersonGraphModel>(x, x.Id.ToString())).ToList();
 
         var firstPageIndex = skip ?? 0;
-        var lastPageIndex = firstPageIndex + people.Count-1;
-        var pageInfo = new ConnectionPageInfo(lastPageIndex<peopleCount-1, firstPageIndex>0, firstPageIndex.ToString(), lastPageIndex.ToString());
-        
+        var lastPageIndex = firstPageIndex + people.Count - 1;
+        var pageInfo = new ConnectionPageInfo(lastPageIndex < peopleCount - 1, firstPageIndex > 0, firstPageIndex.ToString(), lastPageIndex.ToString());
+
         var connection = new Connection<PersonGraphModel>(edges, pageInfo, ct => ValueTask.FromResult(peopleCount));
 
         return connection;

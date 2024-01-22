@@ -4,13 +4,19 @@ namespace GraphQl.Domain;
 
 public class PersonService
 {
+    public enum PersonSortField
+    {
+        Id,
+        FirstName,
+        LastName
+    }
+
     public async Task<List<Person>> GetPeople(int? skip = null, int? take = null, PersonSortField? sortBy = null)
     {
         Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.ffff")}: Getting all people");
         var peopleQuery = (await Data.Data.People).AsEnumerable();
-        
+
         if (sortBy != null)
-        {
             switch (sortBy)
             {
                 case PersonSortField.FirstName:
@@ -23,22 +29,18 @@ public class PersonService
                     peopleQuery = peopleQuery.OrderBy(x => x.Id);
                     break;
             }
-        }
 
-        if (skip.HasValue)
-        {
-            peopleQuery = peopleQuery.Skip(skip.Value);
-        }
+        if (skip.HasValue) peopleQuery = peopleQuery.Skip(skip.Value);
 
-        if (take.HasValue)
-        {
-            peopleQuery = peopleQuery.Take(take.Value);
-        }
+        if (take.HasValue) peopleQuery = peopleQuery.Take(take.Value);
 
         return peopleQuery.ToList();
     }
 
-    public async Task<IQueryable<Person>> GetPeopleQueryable() => (await Data.Data.People).AsQueryable();
+    public async Task<IQueryable<Person>> GetPeopleQueryable()
+    {
+        return (await Data.Data.People).AsQueryable();
+    }
 
     public async Task<List<Person>> GetByIds(IReadOnlyCollection<int> ids)
     {
@@ -56,13 +58,6 @@ public class PersonService
     {
         Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.ffff")}: Getting person: {id}");
         return (await Data.Data.People).FirstOrDefault(x => x.Id == id);
-    }
-
-    public enum PersonSortField
-    {
-        Id,
-        FirstName,
-        LastName
     }
 }
 

@@ -1,6 +1,5 @@
 ﻿using GraphQl.GraphQl.Domain;
 using GraphQl.GraphQl.Domain.DataLoaders;
-using GraphQl.GraphQl.Domain.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 

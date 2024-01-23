@@ -60,21 +60,3 @@ public class PersonService
         return (await Data.Data.People).FirstOrDefault(x => x.Id == id);
     }
 }
-
-public class CarService
-{
-    public async Task<List<Car>> GetByIds(IReadOnlyCollection<int> ids)
-    {
-        Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.ffff")}: Getting cars: {string.Join(",", ids)}");
-        return (await Data.Data.Cars).Where(x => ids.Contains(x.Id)).ToList();
-    }
-}
-
-public class ManufacturerService
-{
-    public async Task<List<Manufacturer>> GetByIds(IReadOnlyCollection<int> ids)
-    {
-        Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.ffff")}: Getting manufacturers: {string.Join(",", ids)}");
-        return (await Data.Data.Manufacturers).Where(x => ids.Contains(x.Id)).ToList();
-    }
-}
